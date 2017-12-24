@@ -25,22 +25,31 @@
 	*不再尝试使用pop及unshift，只需改变蛇头坐标，其后每一个都更新自己的坐标为上一点坐标
 	*/
 	//初始化,设定变量及位置
-	//set内包含两个值，x，y
 	//flag（方向）
 	var dir={"flag":39};
 	
+	//set内包含两个值，x，y
 	var set = [
 		{"x":10,"y":50},
 		{"x":0,"y":50}
 		];
+	
 	//画布及画笔
 	var canvas = document.getElementById("han");
 	var ctx = canvas.getContext("2d");
 	
+	//食物的位置
+	var food = {"x":Math.floor(Math.random()*50) * 10,
+				"y":Math.floor(Math.random()*50) * 10
+			   };
+	
+	//分数
+	var score = 0;
+	
 	//主程序
 	function main(){
 		
-		
+		score = 0;
 		ctx.shadowBlur = 20;
 		ctx.shadowColor = "red";
 	
@@ -48,6 +57,8 @@
 		console.log("set[0]:"+set[0].x+" : "+set[0].y);
 		console.log("set[1]:"+set[1].x+" : "+set[1].y);
 		
+		
+		//蛇的移动
 		var loop=setInterval( function(){
 			ctx.clearRect(0,0,500,500);
 	
@@ -55,16 +66,54 @@
 			// 判断撞墙或撞自己
 			if(! against()){
 				clearInterval(loop);
-				alert("you lose!");
+				alert("you lose! you got :"+score);
 			}
+			
+			setFood();
 		
+			//吃到食物,变长，加分，更新食物位置
+			if( eat() ){
+				//倒一
+				var last = set[set.length - 1];
+				//倒二
+				var plast = set[set.length - 2];
+				
+				px = last.x-plast.x;
+				py = last.y-plast.y;
+				
+				var tail = {"x":last.x+px , "y":last.y+py};
+				set.push(tail);
+				
+				//加分
+				score++;
+				document.getElementById("score").innerHTML = score;
+			
+				
+				//更新食物位置
+				food.x=Math.floor(Math.random()*50) * 10;
+				food.y=Math.floor(Math.random()*50) * 10;
+		
+			}
+			
 			refresh(dir);
 
-		},500);
+		},200);
 		
 	}
 	
+	//画食物
+	function setFood(){
+		
+		ctx.fillRect(food.x,food.y,10,10);
+	}
 	
+	//判断是否吃到食物
+	function eat(){
+		var head = set[0];
+		if(head.x == food.x && head.y == food.y)
+			return true;
+		return false;
+	}
 	
 	//判断是否撞墙或撞自己
 	function against(){
@@ -126,12 +175,9 @@
 	
 </script>
 	
-	
-	
+		
 <button onclick="main()" >begin</button>
+<p>your score :<span id="score">0</span> </p>	
 </body>
-
-
-
 
 </html>
