@@ -20,6 +20,10 @@
 <canvas id = "han" width="500" height="500"> 你的浏览器不支持canvas</canvas>
 
 <script>
+	
+	/**
+	*不再尝试使用pop及unshift，只需改变蛇头坐标，其后每一个都更新自己的坐标为上一点坐标
+	*/
 	//初始化,设定变量及位置
 	//set内包含两个值，x，y
 	//flag（方向）
@@ -29,86 +33,96 @@
 		{"x":10,"y":50},
 		{"x":0,"y":50}
 		];
+	//画布及画笔
+	var canvas = document.getElementById("han");
+	var ctx = canvas.getContext("2d");
 	
 	//主程序
 	function main(){
 		
-		var canvas = document.getElementById("han");
-		var ctx = canvas.getContext("2d");
-	
+		
 		ctx.shadowBlur = 20;
 		ctx.shadowColor = "red";
-//		ctx.fillRect(set[0].x,set[0].y,10,10);
-//		ctx.fillRect(set[1].x,set[1].y,10,10);
+	
+		//位置信息
+		console.log("set[0]:"+set[0].x+" : "+set[0].y);
+		console.log("set[1]:"+set[1].x+" : "+set[1].y);
 		
-		//每秒根据flag的值更新一次块的坐标
-		setInterval("set=refresh(set)",1000);
+		var loop=setInterval( function(){
+			ctx.clearRect(0,0,500,500);
+	
+			setsnake();
+			// 判断撞墙或撞自己
+			if(! against()){
+				clearInterval(loop);
+				alert("you lose!");
+			}
+		
+			refresh(dir);
 
+		},500);
+		
 	}
 	
-	document.onkeyup=function(event){
-			
-			dir.flag = event.keyCode;
-			
-			//弹出尾巴
-			var head=set.pop();
-			
-			switch(dir.flag){
-				case 37:	head.x-=10;
-						break; 
-
-				case 38:	head.y-=10;
-						break;
-							
-				case 39: 	head.x+=10;
-						break; 
-						
-				case 40: 	head.y+=10;
-						break;
-						
-				default : break;
-			}
-			
-			set.unshift(head);
-		}
 	
-	//更新蛇的位置
-	function refresh(set){
-		var canvas = document.getElementById("han");
-		var ctx = canvas.getContext("2d");
 	
-		ctx.clearRect(0,0,500,500);
+	//判断是否撞墙或撞自己
+	function against(){
+		if( set[0].x<=0 || set[0].y<=0 || set[0].x>=500 || set[0].y>=500)
+			return false;
+		var head = set[0];
 		
+		for(var i=1;i<set.length;i++){
+			if(head.x == set[i].x && head.y == set[i].y)
+				return false;
+		}
+		
+		return true;
+	}
+	
+	//画蛇
+	function setsnake(){
+		for(var i=0;i<set.length;i++){
+			ctx.fillRect(set[i].x,set[i].y,10,10);
+		}
+	}
+	
+	//更新位置,头部四个不同的移动方法
+	//向右移动
+	function refresh(dir){
+		
+		var head = set[0];
 		
 		switch(dir.flag){
-			case 37:	set[1].x-=20;
-						break; 
-
-			case 38:	set[1].y-=20;
-						break;
-						
-			case 39: 	set[1].x+=20;
-						break; 
-						
-			case 40: 	set[1].y+=20;
-						break;
-						
+			case 37: set[0]={"x":head.x-10,"y":head.y};break;
+			case 38: set[0]={"x":head.x,"y":head.y-10};break;
+			case 39: set[0]={"x":head.x+10,"y":head.y};break;
+			case 40: set[0]={"x":head.x,"y":head.y+10};break;
 			default : break;
 		}
 		
-		
-		//交换头尾
-		set.unshift(set.pop());
-		
-		//ts
-		console.log(set[0].x+":"+set[0].y+":"+dir.flag);
-	
-		ctx.fillRect(set[0].x,set[0].y,10,10);
-		ctx.fillRect(set[1].x,set[1].y,10,10);
-		
-		return set;
+		move(head);
 	}
 	
+	//移动身体
+	function move(pre){
+		var temp;
+		for(var i=1;i<set.length;i++){
+			temp = set[i];
+			set[i] = pre;
+			pre = temp;
+		}
+	
+	}
+	
+	//响应键盘
+	document.onkeyup = function(event){
+		var e =event.keyCode;
+	
+		if(Math.abs(e - dir.flag )!=2 && e>=37 && e<=40 )
+			dir.flag = e;
+		
+	}
 	
 </script>
 	
