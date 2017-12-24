@@ -13,69 +13,52 @@
 	}
 </style>
 
+<script>
+	//更新蛇的位置
+	function refresh(set){
+		ctx.clearRect(0,0,500,500);
+		
+		switch(set.flag){
+			case 37: set.x-=20;break; 
+			case 38: set.y-=20;break; 
+			case 39: set.x+=20;break; 
+			case 40: set.y+=20;break;
+			default : break;
+		}
+		ctx.fillRect(set.x,set.y,50,50);
+		
+		return set;
+	}
+	
+	
+	
+	//主程序
+	function main(){
+		
+		var canvas = document.getElementById("han");
+		var ctx = canvas.getContext("2d");
+		ctx.shadowBlur = 20;
+		ctx.shadowColor = "red";
+		//set内包含三个值，x，y，flag（方向）
+		var set = {x:0,y:50,flag:39};
 
+		ctx.fillRect(set.x,set.y,50,50);
+		
+		//每秒根据flag的值更新一次块的坐标
+		setInterval("set=refresh(set)",1000);
+	}
+	
+</script>
+	
+	
 </head>
 
 <body>
 <canvas id = "han" width="500" height="500"> 你的浏览器不支持canvas</canvas>
 
-<script>
-	//更新蛇的位置
-	function refresh(set,flag){
-		stx.clearRect(0,0,500,500);
-		
-		document.onkeyup = function (event){
-			console.log("event.keyCode-direct:"+event.keyCode);
-			if(	Math.abs(event.keyCode-direct) != 2){
-				console.log("you got !");
-				direct = event.keyCode;
-				switch(direct){
-					case 38: flag=1;break;
-					case 40: flag=2;break;
-					case 37: flag=3;break;
-					case 39: flag=4;break;
-					default: break;
-				}
-			}
-			console.log("the direct change :"+event.keyCode);
-		}
-		
-		
-		setInterval("show(direct,flag)",1000);
-		
-		switch(flag){
-			case 1: set.y-=10;break;	//up
-			case 2: set.y+=10;break;	//down
-			case 3: set.x-=10;break;	//left
-			case 4: set.x+=10;break;	//right
-			default: break;
-		} 
-		
-		set.x=set.x%500;
-		set.y=set.y%500;
-		stx.fillRect(set.x,set.y,10,20);
-		return set;
-	}
-	
-	//展示输入及方向
-	function show(direct,flag){
-			console.log(direct+"  :  "+flag);
-	}
-	
-	//主程序
-	var direct=40;
-	var flag=2;
-	var canvas = document.getElementById("han");
-	var stx = canvas.getContext("2d");
-	stx.shadowBlur = 20;
-	stx.shadowColor = "red";
-	var set = {x:0,y:50};
 
-	setInterval("set=refresh(set,flag)",1000);
 	
-	
-</script>
-<button onclick="begin()" >begin</button>
+<button onclick="main()" >begin</button>
 </body>
 
 
