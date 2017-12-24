@@ -13,50 +13,106 @@
 	}
 </style>
 
+
+</head>
+
+<body>
+<canvas id = "han" width="500" height="500"> 你的浏览器不支持canvas</canvas>
+
 <script>
-	//更新蛇的位置
-	function refresh(set){
-		ctx.clearRect(0,0,500,500);
-		
-		switch(set.flag){
-			case 37: set.x-=20;break; 
-			case 38: set.y-=20;break; 
-			case 39: set.x+=20;break; 
-			case 40: set.y+=20;break;
-			default : break;
-		}
-		ctx.fillRect(set.x,set.y,50,50);
-		
-		return set;
-	}
+	//初始化,设定变量及位置
+	//set内包含两个值，x，y
+	//flag（方向）
+	var dir={"flag":39};
 	
-	
+	var set = [
+		{"x":10,"y":50},
+		{"x":0,"y":50}
+		];
 	
 	//主程序
 	function main(){
 		
 		var canvas = document.getElementById("han");
 		var ctx = canvas.getContext("2d");
+	
 		ctx.shadowBlur = 20;
 		ctx.shadowColor = "red";
-		//set内包含三个值，x，y，flag（方向）
-		var set = {x:0,y:50,flag:39};
-
-		ctx.fillRect(set.x,set.y,50,50);
+//		ctx.fillRect(set[0].x,set[0].y,10,10);
+//		ctx.fillRect(set[1].x,set[1].y,10,10);
 		
 		//每秒根据flag的值更新一次块的坐标
 		setInterval("set=refresh(set)",1000);
+
 	}
+	
+	document.onkeyup=function(event){
+			
+			dir.flag = event.keyCode;
+			
+			//弹出尾巴
+			var head=set.pop();
+			
+			switch(dir.flag){
+				case 37:	head.x-=10;
+						break; 
+
+				case 38:	head.y-=10;
+						break;
+							
+				case 39: 	head.x+=10;
+						break; 
+						
+				case 40: 	head.y+=10;
+						break;
+						
+				default : break;
+			}
+			
+			set.unshift(head);
+		}
+	
+	//更新蛇的位置
+	function refresh(set){
+		var canvas = document.getElementById("han");
+		var ctx = canvas.getContext("2d");
+	
+		ctx.clearRect(0,0,500,500);
+		
+		
+		switch(dir.flag){
+			case 37:	set[1].x-=20;
+						break; 
+
+			case 38:	set[1].y-=20;
+						break;
+						
+			case 39: 	set[1].x+=20;
+						break; 
+						
+			case 40: 	set[1].y+=20;
+						break;
+						
+			default : break;
+		}
+		
+		
+		//交换头尾
+		set.unshift(set.pop());
+		
+		//ts
+		console.log(set[0].x+":"+set[0].y+":"+dir.flag);
+	
+		ctx.fillRect(set[0].x,set[0].y,10,10);
+		ctx.fillRect(set[1].x,set[1].y,10,10);
+		
+		return set;
+	}
+	
 	
 </script>
 	
 	
-</head>
-
-<body>
-<canvas id = "han" width="500" height="500"> 你的浏览器不支持canvas</canvas>
-
-
 	
 <button onclick="main()" >begin</button>
 </body>
