@@ -9,95 +9,133 @@
 
 		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		
 		<style>
 			#textInput{
 				width:500px;
 				height:300px;
 			}
 		</style>
+		
 		<meta http-equiv="content-type" content="text/html" charest="UTF-8">
 		<title>UML_testing</title>
+		
+		
+		<script>
+			function check(){
+				
+				//var mess = baseMessage.message.value;
+				
+				var mess = document.getElementsByName('message'); //获取所有name=message 的标签
+    			for (var i = 0; i < mess.length; i++) { //循环遍历标签，找出值为空的标签
+					if(mess[i].value == "" || mess[i].value == null){
+						alert("请完善个人信息再提交 ");
+       				 	mess[i].focus();
+						return;
+					}
+   				}
+				
+		
+			}
+		</script>
 	</head>
 
 	<body>
+        
 		<h1>统一建模语言理论考试</h1>	
 		<br/>
-		<p>
-			<pre>考试科目： 统一建模语言          时间： 100分钟		  得分： 100</pre>
-			班级：  <input value="1班"></input>
-			学号：  <input value="001"></input>
-			姓名：  <input value="王小闹"></input>
-		</p>
-	
-		<p>
-			<h2>一、填空题（每空5分，共20分）</h2>
-			1.UML的中文全称是： <input value="统一建模语言"></input>
-			<br/>
-			2.对象最突出的特征是： <input value="封装性"></input>
-								<input value="继承性"></input>
-								<input value="多态性"></input>
-		</p>
+        
+        <form role="form" name="baseMessage">
+		    <div class="form-group">
+		    	<pre>考试科目： 统一建模语言          时间： 100分钟		  得分： 100</pre>
+            </div>
+            
+            <div class="form-group">  
+		    	班级：  <input value="1班" name="message"/>
+		    	学号：  <input value="001" name="message"/>
+			    姓名：  <input value="王小闹" name="message"/>
+		    </div>
+	    </form> 
 
-		<p>
+		<form role="form">
+			<h2>一、填空题（每空5分，共20分）</h2>
+            <div class="form-group">
+			1.UML的中文全称是： <input value="统一建模语言"/>
+			</div>
+            
+            <div class="form-group">
+			2.对象最突出的特征是： <input value="封装性"/>
+								<input value="继承性"/>
+								<input value="多态性"/>
+            </div>
+		</form>
+
+		<form role="form">
 			<h2>二、选择题（每题10分，共20分）</h2>
 			1.UML与软件工程的关系是：
-			<form>
-				<input type="radio" name="firstSelection">(A) UML就是软件工程</input><br/>
-				<input type="radio" name="firstSelection">(B) UML参与到软件工程中软件开发过程的几个阶段</input><br/>
-				<input type="radio" name="firstSelection">(C) UML与软件工程无关</input><br/>
-				<input type="radio" name="firstSelection">(D) UML是软件工程的一部分</input><br/>
-			</form>
+			<div class="form-group">
+				<input type="radio" name="firstSelection"/>(A) UML就是软件工程<br/>
+				<input type="radio" name="firstSelection"/>(B) UML参与到软件工程中软件开发过程的几个阶段<br/>
+				<input type="radio" name="firstSelection"/>(C) UML与软件工程无关<br/>
+				<input type="radio" name="firstSelection"/>(D) UML是软件工程的一部分<br/>
+			</div>
 			
 			2. Java语言支持:
-			<form>
-				<input type="radio" name="secondSelection">(A) 单继承</input><br/>
-				<input type="radio" name="secondSelection">(B) 多继承</input><br/>
-				<input type="radio" name="secondSelection">(C) 单继承和多继承都支持</input><br/>
-				<input type="radio" name="secondSelection">(D) 单继承和多继承都不支持</input><br/>
-			</form>
-		</p>
+			<div class="form-group">
+				<input type="radio" name="secondSelection"/>(A) 单继承<br/>
+				<input type="radio" name="secondSelection"/>(B) 多继承<br/>
+				<input type="radio" name="secondSelection"/>(C) 单继承和多继承都支持<br/>
+				<input type="radio" name="secondSelection"/>(D) 单继承和多继承都不支持<br/>
+			</div>
+		</form>
 
-		<p>
+		<form role="form">
 			<h2>三、多择题(每题10分,共20分)</h2>
 			1. 用例的粒度分为以下哪三种:
-			<form>
-				<input type="checkbox" name="thirdSelection">(A) 概述级</input><br/>
-				<input type="checkbox" name="thirdSelection">(B) 需求级</input><br/>
-				<input type="checkbox" name="thirdSelection">(C) 用户目标级</input><br/>
-				<input type="checkbox" name="thirdSelection">(D) 子功能级</input><br/>
-			</form>
+			<div class="form-group">
+				<input type="checkbox" name="thirdSelection"/>(A) 概述级<br/>
+				<input type="checkbox" name="thirdSelection"/>(B) 需求级<br/>
+				<input type="checkbox" name="thirdSelection"/>(C) 用户目标级<br/>
+				<input type="checkbox" name="thirdSelection"/>(D) 子功能级<br/>
+			</div>
 			
 			2. 类图由以下哪三部分组成:
-			<form>
-				<input type="checkbox" name="fourthSelection">(A) 名称(Name)</input><br/>
-				<input type="checkbox" name="fourthSelection">(B) 属性(Attribute)</input><br/>
-				<input type="checkbox" name="fourthSelection">(C) 操作(Operation)</input><br/>
-				<input type="checkbox" name="fourthSelection">(D) 方法(Function)</input><br/>
-			</form>
-		</p>
+			<div class="form-group">
+				<input type="checkbox" name="fourthSelection"/>(A) 名称(Name)<br/>
+				<input type="checkbox" name="fourthSelection"/>(B) 属性(Attribute)<br/>
+				<input type="checkbox" name="fourthSelection"/>(C) 操作(Operation)<br/>
+				<input type="checkbox" name="fourthSelection"/>(D) 方法(Function)<br/>
+			</div>
+		</form>
 
-		<p>
+		<form role="form">
 			<h2>四、判断题(每题10分,共20分)</h2>
-			<form>
+			
+            <div class="form-group">
 			1. 用例图只是用于和客户交流和沟通的,用于确定需求。
-				<input type=radio name="firstJudge">√</input>
-				<input type=radio name="firstJudge">×</input>
+				<input type=radio name="firstJudge"/>√
+				<input type=radio name="firstJudge"/>×
 				<br/>
+            </div>
+            
+            <div class="form-group">
 			2. 在状态图中,终止状态在一个状态图中允许有任意多个。 
-				<input type=radio name="secondJudge">√</input>
-				<input type=radio name="secondJudge">×</input>
-			</form>
-		</p>
+				<input type=radio name="secondJudge"/>√
+				<input type=radio name="secondJudge"/>×
+            </div>
+
+		</form>
 		
-		<p>
+		
+		<form role="form">
 			<h2>五、简答题(每题20分,共20分)</h2>
 			1. 简述什么是模型以及模型的表现形式?
 			<br/>
 			<textarea id="textInput">模型是对现实世界的简化和抽象，模型是对所研究的系统、过程、事物或概念的一种表达形式。可以是物理实体；可以是某种图形；或者是一种数学表达式。
 			</textarea>
-		</p>
+		</form>
 
-	<input type="button" value=计算分数></input>
+	<input type="button" value=计算分数 onclick="check()"/>
 	</body>
 
 </html>
