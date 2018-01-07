@@ -1,14 +1,77 @@
-<!DOCTYPE html>
-<html>
+<!doctype>
 
+<html>
 	<head>
-		<meta http-equiv="content-type" content="html/text" charest="UTF-8">
+		<meta http-equiv="type-content" content="html/text" charset="UTF-8">
 		<title>数字匹配</title>
 		
-	</head>
+		<style>
+			td{
+				border: 1px solid blue;
+				width: 70px;
+				height: 70px;
+			}
+			#table{
+				border:5px solid gray;
+			}
+		</style>
 	
-	<body>
-		
-	</body>
+		<script>
+		var num = new Array();
+			function nums(){
+				var i = 0;
+				var arr = new Array();
+				while(i < 10){
+					var flag = 0;
+					var temp = Math.floor(Math.random()*100);
+					
+					for(var j = 0;j < arr.length; j ++ ){
+						if(arr[j] == temp){
+								flag = 1;
+								break;
+						}
+					}
+					
+					if(flag == 0){
+						arr.push(temp);
+						i++;
+					}
+					var nums = arr.concat(arr);
+				}
+				function randomsort(a, b) {
+					return Math.random()>.5 ? -1 : 1;
+				}
+				nums.sort(randomsort);
+				return nums;
+			}
+			
+			function tablePrint(){
+				var set;
+				var table = "<table id='table'>";
+				
+				num = nums();
+				for(var i = 0; i < 4;i ++){
+					table += "<tr>";
+					for(var j = 0;j < 5; j ++){
+						set = i * 5 + j;
+						table += "<td id=" + set + " onclick='show("+ set +",num)'>     </td>";
+					}
+					table += "</tr>";
+				}
+				table += "</table>";
+				document.write(table);
+			}
+			function show(set,num){
+				document.getElementById(set).innerHTML = num[set];	
+			}
+			
+		</script>
+	</head>
 
+	<body>
+		<script>
+			tablePrint();
+			alert(nums());
+		</script>
+	</body>
 </html>
