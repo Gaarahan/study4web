@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>rough canvas</title>
+    <script src="rough.min.js"></script>
+    <style>
+      #myRoughCanvas{
+        margin: 0 auto;
+        border: 1px solid grey;
+      }
+    </style>
+    <script>
+      function showMouse(event){
+        document.getElementById("x").innerHTML = event.offsetX;
+        document.getElementById("y").innerHTML = event.offsetY;
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <canvas id="myRoughCanvas" onmousemove="showMouse(event)" height="500px" width="500px"></canvas> 
+    </div>
+    <script>
+      const ct = rough.canvas(document.getElementById("myRoughCanvas"));
+
+      ct.rectangle(100,150,300,200,{
+        fill : "grey",
+        fillweight : 0,
+        roughness : 3
+      });
+      ct.ellipse(175,210,40,30,{
+        fill : "red",
+        fillweight : 5
+      });
+      ct.ellipse(325,210,40,30,{
+        fill : "red",
+        fillweight : 5
+      });
+      
+      //绘制三角形
+      ct.path('M250 300,L225 225,L280 225,Z',{
+        fill: 'red',
+        fillweight: 3
+      });
+
+      ct.path('M200 150,L150 50');
+      ct.path('M300 150,L350 50');
+    </script>
+    <p>x:<span id="x">0</span>y:<span id="y">0</span></p>
+  </body>
+</html>
