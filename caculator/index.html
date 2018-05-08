@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <script src="vue.js"></script>
+    <link rel='stylesheet' href="style.css">
+    <title>MyCaculator</title>
+  </head>
+  <body>
+    <div id="vue-app">
+      <div id="result">{{result}}</div>
+      <div>
+        <table>
+          <tr>
+            <td><input type="button" value="AC" @click='ACClick'></td>
+            <td><input type="button" value="CE" @click='CEClick'></td>
+            <td><input type="button" value="%" @click='opClick'></td>
+            <td><input type="button" value="/" @click='opClick'></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="7" @click='numberClick'></td>
+            <td><input type="button" value="8" @click='numberClick'></td>
+            <td><input type="button" value="9" @click='numberClick'></td>
+            <td><input type="button" value="*" @click='opClick'></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="4" @click='numberClick'></td>
+            <td><input type="button" value="5" @click='numberClick'></td>
+            <td><input type="button" value="6" @click='numberClick'></td>
+            <td><input type="button" value="-" @click='opClick'></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="1" @click='numberClick'></td>
+            <td><input type="button" value="2" @click='numberClick'></td>
+            <td><input type="button" value="3" @click='numberClick'></td>
+            <td><input type="button" value="+" @click='opClick'></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="." @click='numberClick'></td>
+            <td><input type="button" value="0" @click='numberClick'></td>
+            <td><input type="button" value="Ans" @click="ansClick"></td>
+            <td><input type="button" value="=" @click='enterClick'></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script src="app.js"> </script>
+  </body>
+</html>
