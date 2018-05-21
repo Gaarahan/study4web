@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>GET VIDEO</title>
+		<meta charset="utf-8">
+		<script>
+				
+		function takePhoto() {
+		//获得Canvas对象  
+			var canvas = document.getElementById("canvas"); 
+			var ctx = canvas.getContext('2d');
+			ctx.drawImage(video, 0, 0, 500, 500);
+		};
+		
+		</script>
+	</head>
+	<body>
+		<video id="window" width="500" height="500" autoplay="autoplay"></video>
+		<canvas id="canvas" width="500" height="500"></canvas>
+	<button id="snap" onclick="takePhoto()">拍照</button>
+	<script>
+		/* constraints 是一个MediaStreamConstraints 对象
+		 * 指定了请求的媒体类型和相对应的参数
+		 */
+		 //请求音频和视频,并指定了视频的分辨率
+		var constraints = {  
+			video : {width:1024,height:768},
+			//audio : true
+		};   
+		//获得video摄像头区域  
+		var video = document.getElementById("window");
+		
+		/* 已被废弃的函数
+		//此函数获取了设备的摄像头
+		navigator.getUserMedia(videoObj, function(stream) {
+			//设置上面video标签的播放内容为摄像头
+			
+			video.src = window.URL.createObjectURL(stream);
+			//开始播放
+			video.play();
+		}, errBack);
+		*/
+		//新的方法
+		// 返回一个 Promise 
+		// 这个Promise成功后的 **回调函数** 带一个 MediaStream 对象作为其参数
+		var promise = navigator.mediaDevices.getUserMedia(constraints);
+		/* 	不建议使用的方法window.URL.createObjectURL(stream);
+		promise.then(function(stream){
+			//设置上面video标签的播放内容为摄像头
+			video.src = window.URL.createObjectURL(stream);
+			//开始播放
+			video.play();
+		});*/
+		
+		promise.then(function(MediaStream){
+			video.srcObject = MediaStream;
+			video.play();
+		});
+	
+		</script>
+	</body>
+</html>
