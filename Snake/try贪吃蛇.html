@@ -90,16 +90,10 @@
 	/**
 	*不再尝试使用pop及unshift，只需改变蛇头坐标，其后每一个都更新自己的坐标为上一点坐标
 	*/
-	//初始化,设定变量及位置
-	//flag（方向）
-	var dir={"flag":39};
-	
-	//set内包含两个值，x，y
-	var set = [
-		{"x":10,"y":50},
-		{"x":0,"y":50}
-		];
-	
+  var set = [];
+  var dir = {};
+	//分数
+	var score = 0;
 	//画布及画笔
 	var canvas = document.getElementById("han");
 	var ctx = canvas.getContext("2d");
@@ -109,12 +103,20 @@
 				"y":Math.floor(Math.random()*50) * 10
 			   };
 	
-	//分数
-	var score = 0;
 	
 	//主程序
 	function main(){
-		
+
+    //初始化,设定变量及位置
+    //flag（方向）
+    dir={"flag":39};
+    
+    //set内包含两个值，x，y
+    set = [
+      {"x":10,"y":50},
+      {"x":0,"y":50}
+      ];
+
 		score = 0;
 		ctx.shadowBlur = 20;
 		ctx.shadowColor = "gray";
@@ -141,13 +143,7 @@
 			if( eat() ){
 				//倒一
 				var last = set[set.length - 1];
-				//倒二
-				var plast = set[set.length - 2];
-				
-				px = last.x-plast.x;
-				py = last.y-plast.y;
-				
-				var tail = {"x":last.x+px , "y":last.y+py};
+				var tail = {"x":last.x+10 , "y":last.y+10 };
 				set.push(tail);
 				
 				//加分
