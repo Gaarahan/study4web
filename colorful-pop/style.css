@@ -1,4 +1,4 @@
-@-moz-keyframes change-size{
+@keyframes change-size{
   0% : {
   }
   50%{
@@ -23,5 +23,5 @@ html,body{
 .pop{
   position : absolute;
   overflow:hidden;
-  -moz-animation : change-size 5s infinite; 
+  animation : change-size 5s infinite; 
 }
