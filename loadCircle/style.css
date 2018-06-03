@@ -1,0 +1,29 @@
+div{
+  background-color:blue;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+}
+
+div:after{
+  content:" ";
+  width:100px;
+  height:100px;
+  display:block;
+  border-radius:50%;
+  position:relative;
+  left:-3px;
+  top:-3px;
+  border:3px solid;
+  border-color:red transparent transparent transparent;
+  animation:mymove 2s infinite linear;
+}
+
+@keyframes mymove{
+  0%{
+    transform:rotate(0deg);
+  }
+  100%{
+    transform:rotate(-360deg);
+  }
+}
