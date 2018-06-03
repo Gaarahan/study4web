@@ -1,5 +1,5 @@
 @keyframes change-size{
-  0% : {
+  0%{
   }
   50%{
     transform:scale(0.9);
