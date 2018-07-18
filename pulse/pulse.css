@@ -1,0 +1,38 @@
+.contain{
+  margin:0;
+  padding:0;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%); 
+}
+
+.pulse{
+  width:150px;
+  height:150px;
+  background-color:#ff6d4a;
+  border-radius:50%;
+  text-align:center;
+  font-size:30px;
+  line-height:150px;
+  color:white;
+  animation:myPulse 3s linear infinite;
+}
+
+@keyframes myPulse{
+  0%{
+   box-shadow: 0 0 0 0 rgba(255,109,70,0.7), 0 0 0 0 rgba(255,109,70,0.8);
+  }
+
+  40%{
+   box-shadow: 0 0 0 30px rgba(255,109,70,0), 0 0 0 0 rgba(255,109,70,0.8);
+  }
+
+  80%{
+   box-shadow: 0 0 0 30px rgba(255,109,70,0), 0 0 0 20px rgba(255,109,70,0);
+  }
+  
+  100%{
+   box-shadow: 0 0 0 0 rgba(255,109,70,0.5), 0 0 0 20px rgba(255,109,70,0);
+  }
+}
