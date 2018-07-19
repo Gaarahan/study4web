@@ -1,0 +1,48 @@
+.surface{
+  width:200px;
+  height:200px;
+  position: absolute;
+  border:red 1px solid;
+}
+
+.cube-box{
+  top: 200px;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  perspective: 500px;
+}
+
+.box{
+  width: 200px;
+  transform-style: preserve-3d;
+  animation: rotate linear infinite 4s;
+}
+.sf1{
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.sf2{
+  transform : translateZ(100px);
+}
+.sf3{
+  transform : rotateY(90deg) translateZ(100px);
+}
+.sf4{
+  transform : translateZ(-100px);
+}
+.sf5{
+  transform : rotateX(90deg) translateZ(100px);
+}
+.sf6{
+  transform : rotateX(-90deg) translateZ(100px);
+}
+
+@keyframes rotate {
+  0%{
+    transform: rotateY(0deg);
+  }
+  100%{
+    transform: rotateY(360deg);
+  }
+}
