@@ -1,0 +1,54 @@
+.roating-box{
+    width: 400px;
+    height: 400px;
+    perspective: 2000px;
+    margin: 10px auto;
+}
+
+.single-rb{
+    width: 400px;
+    animation: rorate 15s linear infinite;
+    transform-style: preserve-3d;
+    margin-top: 150px;
+}
+
+.single-rb img{
+    width: 400px;
+    height: 400px;
+}
+
+.single-rb div{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+}
+
+.front{
+    transform: translateZ(200px);
+}
+
+.back{
+    transform: rotateY(180deg) translateZ(200px);
+}
+
+.left{
+    transform: rotateY(-90deg) translateZ(200px);
+}
+
+.right{
+    transform: rotateY(90deg) translateZ(200px);
+}
+
+.top{
+    transform: rotateX(90deg) translateZ(200px);
+}
+
+.bottom{
+    transform: rotateX(-90deg) translateZ(200px);
+}
+
+@keyframes rorate{
+    0%{transform:rotateX(0) rotateY(0);}
+    50%{transform: rotateX(180deg) rotateY(180deg);}
+    100%{transform:rotateX(360deg) rotateY(360deg);}
+}
