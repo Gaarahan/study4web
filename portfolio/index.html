@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>My Portfolio</title>
+  <!--引入矢量图-->
+  <link rel="stylesheet" type="text/css" href="./static/iconfont.css">
+  <!--公用的样式-->
+  <link href="css/style.css" rel="stylesheet">
+  <!--intro样式表-->
+  <link href="css/intro.css" rel="stylesheet">
+  <!--prot样式表-->
+  <link href="css/prot.css" rel="stylesheet">
+  <!--contact样式表-->
+  <link href="css/contact.css" rel="stylesheet">
+  <!--头像脉冲效果-->
+  <link href="css/pulse.css" rel="stylesheet">
+  <script src="js/app.js"></script>
+</head>
+<body onscroll="show()">
+<div id="navigation-contain">
+  <span id="title">GaaraHan's Portfolio</span>
+  <ul id="navigation">
+    <li id="part1" class="current" onclick="go(0)">
+      <span>Introduce</span>
+    </li>
+    <li id="part2" onclick="go(1)">
+      <span>Protfolio</span>
+    </li>
+    <li id="part3" onclick="go(2)">
+      <span>contact</span>
+    </li>
+  </ul>
+</div>
+<div class="spaceHolder"></div>
+<!--Introduce-->
+<div id="intro-contain" class="part-contain">
+  <div id="introPic-contain">
+    <div id='headPic'>
+    </div>
+    <div class="intro-title">about me</div>
+    <h5 id="intro-head"><label class="intro-name">GaaraHan </label><label id="foreword"> ---- A Laze Idealist</label></h5>
+  </div>
+  <pre class="intro-self">
+        - want     to     learn     everything
+
+        - but     nothing     learned</pre>
+</div>
+
+<!--Protfolio-->
+<div id="prot-contain" class="part-contain">
+  <div class="contact-title">My Protfolio</div>
+  <div class="prot-single">
+    <img src="./static/port.png" >
+    <div class="prot-contain">
+    </div>
+    <div class="title-text">
+      protfolio
+      <hr>
+    </div>
+    <div class="detail-text">
+      Nothing to show but this page
+    </div>
+  </div>
+</div>
+
+<!--contact-->
+<div id="cont-contain" class="part-contain">
+  <h1 class="contact-title">contact with me</h1>
+  <div class="left-contact">
+    <form id="eamil-form" name="email-form">
+          <textarea id="email-subject" class="eamil-input" placeholder="Subject"
+                    oninput="getInput(this)" autocomplete="off"></textarea>
+      <div class="input-tip" id="subject-tip">Subject</div>
+      <textarea id="email-content" class="eamil-input" placeholder="Content" rows="5"
+                oninput="getInput(this)" autocomplete="off"></textarea>
+      <div class="input-tip" id="content-tip">Content</div>
+      <input id="submit-email" value="Email" onclick="submitEmail()" type="button">
+    </form>
+  </div>
+  <div class="right-contact">
+    You can use contact me in email which in the left or the following method
+    <div class="contact-links">
+      <div id="github" class="contact-icon">
+        <a href="https://github.com/Gaarahan"><i class="iconfont icon-github"></i></a>
+      </div>
+      <div id="twitter" class="contact-icon">
+        <a href="http://www.linkedin.com/feed/"><i class="iconfont icon-twitter3"></i></a>
+      </div>
+      <div id="linkedin" class="contact-icon">
+        <a href="http://www.linkedin.com/feed/"><i class="iconfont icon-lingying"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

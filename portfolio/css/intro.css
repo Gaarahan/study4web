@@ -1,0 +1,93 @@
+/*自定义字体*/
+@font-face {
+  font-family: Mae;
+  src: url("../static/Maestro-Regular.ttf");
+}
+
+/*设定头像容器的样式*/
+#introPic-contain{
+  position: relative;
+  top: 50px;
+  left: 40px;
+}
+
+#headPic{
+  border:1px solid grey;
+  box-shadow:0 0 5px 1px;
+  border-radius:50%;
+  position: relative;
+  width:150px;
+  height:150px;
+  top:20px;
+  left:40px;
+  background-image: url("../static/headPic.jpg");
+  background-size:110% 100%;
+}
+
+/*个人介绍的标题*/
+.intro-title{
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  top: 80px;
+  left: 600px;
+  font-family: Mae,fantasy;
+  font-size: 40px;
+}
+
+#intro-head *{
+  position: relative;
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: #b532a2;
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+.intro-name{
+  float: left;
+  line-height: 1.5em;
+}
+
+/*个人引言*/
+#foreword{
+
+  margin-left: 20px;
+  float: left;
+  font-size: 30px;
+  width: 0;
+  height: 1.5em;
+  line-height: 1.5em;
+  overflow: hidden;
+  white-space:nowrap;
+}
+
+#headPic:hover ~ #intro-head #foreword{
+  animation: typing 3s steps(20,end) forwards,blink-caret 1s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    border-right: 2px black solid;
+  }
+  to{
+    width: 13em;
+    border-right: 2px black solid;
+  }
+}
+
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/*个人介绍*/
+.intro-self{
+  position: absolute;
+  font-size: 25px;
+  margin: 200px 100px;
+  font-family: Mae, fantasy;
+}
