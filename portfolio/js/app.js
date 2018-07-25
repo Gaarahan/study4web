@@ -12,6 +12,7 @@ function go(num){
   });
 }
 
+// 当页面滚动时,判断并更新滑动条及顶部导航栏的状态
 function show(){
   var introOffset = document.getElementById("intro-contain").offsetTop;
   var portOffset =  document.getElementById("prot-contain").offsetTop;
@@ -26,6 +27,13 @@ function show(){
   }else{
     changeSet(2);
   }
+
+  var progress = document.getElementById("progress-bar");
+  var winHeight = document.documentElement.clientHeight;
+  console.log(winHeight);
+  var pageHeight = document.body.scrollHeight - winHeight;
+  console.log(winOffset/pageHeight * 100);
+  progress.style.width = winOffset/pageHeight * 100 + "%";
 }
 
 //改变每个标签的显示状态
