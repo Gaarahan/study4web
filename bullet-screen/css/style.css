@@ -1,0 +1,54 @@
+html,body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.contain{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#bullet-wall{
+  position: relative;
+  margin: 10px auto;
+  width: 95%;
+  height: 85%;
+  border: 1px grey solid;
+}
+
+#input-contain{
+  margin-top: 20px;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.bullet{
+  white-space: nowrap;
+  font-size: 20px;
+  line-height: 25px;
+  animation: move 10s ease-in infinite;
+  position: absolute;
+}
+
+@keyframes move {
+  0% {
+    right:0;
+    opacity: 1;
+  }
+  60%{
+    right: 92%;
+    opacity: 0.5;
+  }
+  61%{
+    right: 92%;
+    opacity: 0;
+  }
+  100%{
+    right: 92%;
+    opacity: 0;
+  }
+}
