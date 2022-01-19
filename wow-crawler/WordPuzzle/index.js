@@ -5,7 +5,9 @@ const path = require("path");
 async function getStartsWith(char) {
   let WORD_DIC;
   try {
-    WORD_DIC = JSON.parse(fs.readFileSync(path.join(__dirname, "./WORD_DIC.json")));
+    WORD_DIC = JSON.parse(
+      fs.readFileSync(path.join(__dirname, "./WORD_DIC.json"))
+    );
     if (!WORD_DIC) {
       throw new Error("WORD_DIC is empty");
     }
@@ -17,7 +19,7 @@ async function getStartsWith(char) {
     return WORD_DIC[char];
   }
 
-  console.log('Can not get exist dictionary, try to get from internet\n\n');
+  console.log("Can not get exist dictionary, try to get from internet\n\n");
 
   const dom = await utils.getDomFromUrl(
     `https://www.thefreedictionary.com/words-that-start-with-${char}#w5`
@@ -35,30 +37,17 @@ async function getStartsWith(char) {
   return wordsList;
 }
 
-async function main() {
-  const startWithChar = "p";
+async function main(startWithChar) {
   const includes = {
-    o: [0, 2],
-    r: [1, 3],
-    y: [4],
+    r: [0, 2],
+    o: [3],
+    t: [4],
   };
-  const excludes = [
-    "a",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "l",
-    "m",
-    "n",
-    "s",
-    "t",
-    "u",
-    "v",
-  ];
+  const excludes = ["a", "f", "v", "e", "g"];
+
+  if (excludes.includes(startWithChar)) {
+    return;
+  }
 
   console.log(`Search words that start with ${startWithChar}\n\n`);
 
@@ -94,49 +83,36 @@ async function main() {
       }, []);
 
       const includesIndex = includes[char];
-      if (includesIndex.length === 1) {
-        return (
-          charIndexList.length === 1 && charIndexList[0] === includesIndex[0]
-        );
-      } else {
-        return charIndexList.every((index) => includesIndex.includes(index));
-      }
+      return includesIndex.some((index) => charIndexList.includes(index));
     });
 
     return isInCorrectLocation;
   });
 
   console.log(res.length > 0 ? `Result: ${res}` : "No words found");
+  console.log(
+    "================================================================\n"
+  );
+
+  return res;
 }
 
-main();
+let currentCode = "a".charCodeAt() - 1;
+const resMap = {};
 
-// all char list
-/*
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  */
+async function findNext() {
+  currentCode += 1;
+  if (currentCode > "z".charCodeAt()) {
+    console.log(JSON.stringify(resMap, null, 2));
+    return;
+  }
+
+  const res = await main(String.fromCharCode(currentCode));
+  if (res && res.length > 0) {
+    resMap[String.fromCharCode(currentCode)] = res;
+  }
+
+  findNext();
+}
+
+findNext();
