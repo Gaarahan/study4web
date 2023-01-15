@@ -127,3 +127,5 @@ dist
 *.iml
 out
 gen
+.DS_Store
+galaxy-reco/data
